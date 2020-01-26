@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+body {
+  font-family: 'Roboto';
+  background-color: black;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.watchFace {
+  width: 200px;
+  height: 200px;
+  background: transparent;
+  border-radius: 50%;
+  border: 12px solid #ff375f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-self: center;
+}
+.watchDial {
+  width: 25px;
+  height: 25px;
+  background: #64d2ff;
+  border-radius: 50%;
+  position: absolute;
+}
+.minuteHand {
+  height: 130px;
+  background: transparent;
+  border: 8px solid #32d74b;
+  border-radius: 50%;
+}
+.formWrapper {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+.spacer {
+  margin-top: 25px;
+}
+.input {
+  width: 440px;
+  height: 60px;
+  border-radius: 40px;
+  background: transparent;
+  font-size: 25px;
+  text-align: right;
+  padding: 0 30px;
+  caret-color: #0a84ff;
+}
+.input_task {
+  color: #757575;
+  border: 2px solid #757575;
+}
+.input_minute {
+  color: #32d74b;
+  border: 2px solid #32d74b;
+}
+.buttonStart {
+  width: 440px;
+  height: 60px;
+  border-radius: 41px;
+  background: #32d74b;
+  border: 1px solid #32d74b;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.timer {
+  font-size: 40px;
+  color: #fff;
+  font-weight: bold;
+  align-self: center;
+}
