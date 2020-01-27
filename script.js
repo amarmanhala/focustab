@@ -12,8 +12,10 @@ let taskInput;
 let minuteInput;
 let buttonStart;
 var timerNode;
+var doneTimer;
 let taskProcessing = document.createElement("p");
 taskProcessing.classList.add("timer");
+var secToDegree;
 
 createWatchFace();
 
@@ -50,7 +52,7 @@ function createMinuteInput() {
   minuteInput.placeholder = "Minutes?";
   minuteInput.type = "text";
   minuteInput.addEventListener("input", function(e) {
-    var v = minuteInput.value;
+    v = minuteInput.value;
     if (isNaN(v)) {
       minuteInput.value = "";
       return false;
@@ -75,6 +77,7 @@ buttonStart.addEventListener("click", function(e) {
     formWrapper.replaceChild(taskProcessing, taskInput);
     taskProcessing.textContent = taskInput.value;
     formWrapper.replaceChild(timerNode, minuteInput);
+    formWrapper.replaceChild(doneTimer, buttonStart);
     setInterval(startTimer, 1000);
     startTimer();
   }
@@ -89,39 +92,35 @@ createTimer();
 
 var minuteStart = 0;
 var secondStart = 0;
+var counter = 0;
 function startTimer() {
-  if (secondStart < 5) {
-    secondStart += 1;
+  if (minuteStart == minuteInput.value.trim()) {
+    clearInterval();
+    secondStart = 0;
   } else {
-    if (minuteStart == minuteInput.value.trim() - 1) {
-      clearInterval();
+    if (secondStart < 60) {
+      secondStart += 1;
+      minuteHandRotate(secondStart);
     } else {
-      secondStart = 1;
+      secondStart = 0;
       minuteStart += 1;
     }
   }
-
   timerNode.textContent = minuteStart + " : " + secondStart;
 }
 
-/*
-var STEP = 1;
-function changeRotate(item, val)
-{
-    item.style.transform = "rotate(" + val + "deg)";
-    item.style.webkitTransform = "rotate(" + val + "deg)";
-    item.style.mozTransform = "rotate(" + val + "deg)";
-    //alert(item.style.transform);
-}
-makeCircle(minuteHand, 0);
-function makeCircle(item, targetAngle) {
-    changeRotate(item, targetAngle);
-
-    
-        setTimeout(function (){
-            makeCircle(item, targetAngle + STEP);
-        }, 100);
-    
+function minuteHandRotate(val) {
+  minuteHand.style.transform = "rotate(" + val + "deg)";
 }
 
-*/
+function doneTimer() {
+  doneTimer = document.createElement("button");
+  doneTimer.textContent = "DONE";
+  doneTimer.classList.add("buttonDone");
+
+}
+doneTimer();
+
+doneTimer.addEventListener('click', function() {
+  location.reload();
+});
